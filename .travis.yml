@@ -4,7 +4,6 @@ dist: precise
 language: php
 
 php:
-  - 7.3
   - 7.4
 
 addons:
@@ -17,10 +16,9 @@ cache:
 
 before_script:
   - rm -rf composer.lock
+  - composer install
   - cp .env.travis .env
   - sudo mysql -e 'CREATE DATABASE testing;'
-  - composer self-update
-  - composer install 
   - php artisan migrate --no-interaction -vvv
 
 
