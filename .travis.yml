@@ -5,6 +5,7 @@ language: php
 
 php:
   - 7.4
+  - 8.0
 
 addons:
   mariadb: 10.4
@@ -15,11 +16,12 @@ cache:
     - vendor
 
 before_script:
-  - rm -rf composer.lock
-  - composer install
-  - cp .env.travis .env
-  - sudo mysql -e 'CREATE DATABASE testing;'
-  - php artisan migrate --no-interaction -vvv
+  - cp .env.travis .env # copying .env.travis
+  - mysql -e 'create database testing;' # will run this command
+  - composer self-update
+  - composer install --no-interaction
+  - php artisan key:generate
+  - php artisan migrate --seed
 
 
 script:
