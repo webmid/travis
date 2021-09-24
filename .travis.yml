@@ -5,6 +5,7 @@ language: php
 
 php:
   - 7.3
+  - 7.4
 
 addons:
   mariadb: 10.4
@@ -15,11 +16,13 @@ cache:
     - vendor
 
 before_script:
+  - rm -rf composer.lock
   - cp .env.travis .env
   - sudo mysql -e 'CREATE DATABASE testing;'
   - composer self-update
-  - composer install --no-interaction
+  - composer install 
   - php artisan migrate --no-interaction -vvv
+
 
 script:
   - vendor/bin/phpunit
