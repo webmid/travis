@@ -18,7 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/list', 'App\Http\Controllers\api\UserController@userList')->name('api.user.list');
+Route::get('/user-list', 'App\Http\Controllers\api\UserController@userList')->name('api.user.list');
+Route::get('/post-list', 'App\Http\Controllers\api\PostController@postList')->name('api.post.list');
 
 Route::get('/list2', function() {
     return response('ttttt');
