@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/list', 'App\Http\Controllers\api\UserController@userList')->name('api.user.list');
+
+Route::get('/list2', function() {
+    return response('ttttt');
+})->name('api.user.list2');
